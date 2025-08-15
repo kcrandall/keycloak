@@ -71,6 +71,7 @@ import java.security.Key;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
 import java.util.Arrays;
@@ -101,6 +102,7 @@ import static org.keycloak.utils.StreamsUtil.closing;
 public final class KeycloakModelUtils {
 
     private static final Logger logger = Logger.getLogger(KeycloakModelUtils.class);
+    private static final SecureRandom SECURE_RANDOM = new SecureRandom();
 
     public static final String AUTH_TYPE_CLIENT_SECRET = "client-secret";
     public static final String AUTH_TYPE_CLIENT_SECRET_JWT = "client-secret-jwt";
@@ -127,7 +129,7 @@ public final class KeycloakModelUtils {
      * 
      * @return UUID v7 instance
      */
-    public static UUID generateIdv7() {
+    public static String generateIdv7() {
         long timestamp = Instant.now().toEpochMilli();
         
         // Generate random bytes for the remaining parts
@@ -150,8 +152,9 @@ public final class KeycloakModelUtils {
                    ((long) (randomBytes[7] & 0xFF) << 16) |
                    ((long) (randomBytes[8] & 0xFF) << 8) |
                    (randomBytes[9] & 0xFF);
-        
-        return new UUID(msb, lsb);
+
+        UUID uuid = new UUID(msb, lsb);
+        return uuid.toString();
     }
 
     /**

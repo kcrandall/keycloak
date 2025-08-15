@@ -21,6 +21,8 @@ import java.nio.ByteBuffer;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.UUID;
+import java.util.regex.Pattern;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,6 +31,11 @@ import org.junit.Test;
  * @author rmartinc
  */
 public class KeycloakModelUtilsTest {
+
+    private static final Pattern UUID_PATTERN = Pattern.compile(
+            "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    );
+
 
     @Test
     public void testGenerateId() {
@@ -93,8 +100,6 @@ public class KeycloakModelUtilsTest {
             
         } catch (IllegalArgumentException e) {
             Assert.fail("Generated ID should be a valid UUID: " + e.getMessage());
-        } finally {
-            System.clearProperty(UUID_V7_ENV_VAR);
         }
     }
 }
