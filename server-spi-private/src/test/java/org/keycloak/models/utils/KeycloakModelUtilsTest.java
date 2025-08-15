@@ -64,7 +64,7 @@ public class KeycloakModelUtilsTest {
     }
 
     @Test
-    public void testUUIDv7WithEnvironmentVariable() {
+    public void testUUIDv7() {
         try {
             String id = KeycloakModelUtils.generateIdv7();
             
