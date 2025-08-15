@@ -41,7 +41,7 @@ public class UsersPartialImport extends AbstractPartialImport<UserRepresentation
     // so we cache the created id here.
     private final Map<String, String> createdIds = new HashMap<>();
 
-    private static final boolean USE_USER_UUID_V7 = Boolean.parseBoolean(System.getenv("KEYCLOAK_USE_UUID_V7")
+    private static final boolean USE_USER_UUID_V7 = Boolean.parseBoolean(System.getenv("KC_USER_UUID_V7")
 );
 
     @Override

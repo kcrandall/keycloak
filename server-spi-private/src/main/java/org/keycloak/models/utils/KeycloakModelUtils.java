@@ -149,7 +149,7 @@ public final class KeycloakModelUtils {
                    ((long) (randomBytes[6] & 0xFF) << 24) |
                    ((long) (randomBytes[7] & 0xFF) << 16) |
                    ((long) (randomBytes[8] & 0xFF) << 8) |
-                   ((long) (randomBytes[9] & 0xFF));
+                   (randomBytes[9] & 0xFF);
         
         return new UUID(msb, lsb);
     }
